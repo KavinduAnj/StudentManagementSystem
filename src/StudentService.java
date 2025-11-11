@@ -38,5 +38,16 @@ public class StudentService {
             System.out.println(s);
         }
     }
+    public void searchStudent(Scanner sc) {
+        System.out.print("Enter student ID to search: ");
+        int id = sc.nextInt();
+        for (Student s : students) {
+            if (s.getId() == id) {
+                System.out.println("Student found: " + s);
+                return;
+            }
+        }
+        System.out.println("❌ Student not found!");
+    }
 
 }
