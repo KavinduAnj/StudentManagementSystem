@@ -27,5 +27,16 @@ public class StudentService {
         FileHandler.saveStudents(students);
         System.out.println("✅ Student added successfully!");
     }
+    public void viewStudents() {
+        if (students.isEmpty()) {
+            System.out.println("No students found.");
+            return;
+        }
+        System.out.println("\nID | Name | Age | Course | Marks");
+        System.out.println("----------------------------------------");
+        for (Student s : students) {
+            System.out.println(s);
+        }
+    }
 
 }
