@@ -49,5 +49,27 @@ public class StudentService {
         }
         System.out.println("❌ Student not found!");
     }
+    public void updateStudent(Scanner sc) {
+        System.out.print("Enter student ID to update: ");
+        int id = sc.nextInt();
+        for (Student s : students) {
+            if (s.getId() == id) {
+                sc.nextLine();
+                System.out.print("Enter new name: ");
+                s.setName(sc.nextLine());
+                System.out.print("Enter new age: ");
+                s.setAge(sc.nextInt());
+                sc.nextLine();
+                System.out.print("Enter new course: ");
+                s.setCourse(sc.nextLine());
+                System.out.print("Enter new marks: ");
+                s.setMarks(sc.nextDouble());
+                FileHandler.saveStudents(students);
+                System.out.println("✅ Student updated successfully!");
+                return;
+            }
+        }
+        System.out.println("❌ Student not found!");
+    }
 
 }
