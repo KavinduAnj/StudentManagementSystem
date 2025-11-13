@@ -1,3 +1,4 @@
+// Main.java
 import java.util.Scanner;
 
 public class Main {
@@ -17,8 +18,15 @@ public class Main {
             System.out.print("Enter your choice: ");
             choice = sc.nextInt();
 
-
-
+            switch (choice) {
+                case 1 -> service.addStudent(sc);
+                case 2 -> service.viewStudents();
+                case 3 -> service.searchStudent(sc);
+                case 4 -> service.updateStudent(sc);
+                case 5 -> service.deleteStudent(sc);
+                case 6 -> System.out.println("👋 Goodbye!");
+                default -> System.out.println("Invalid choice. Try again!");
+            }
         } while (choice != 6);
     }
 }
