@@ -1,18 +1,19 @@
 import java.util.*;
+
 public class StudentService {
     private List<Student> students;
 
     public StudentService() {
-        students = FileHandler.loadStudents(); // Load existing data
+        students = FileHandler.loadStudents();
     }
 
     private int generateId() {
         return students.isEmpty() ? 1 : students.get(students.size() - 1).getId() + 1;
     }
 
-    public void addStudent(Scanner sc){
+    public void addStudent(Scanner sc) {
         System.out.print("Enter name: ");
-        sc.nextLine();
+        sc.nextLine(); // consume newline
         String name = sc.nextLine();
         System.out.print("Enter age: ");
         int age = sc.nextInt();
@@ -27,6 +28,7 @@ public class StudentService {
         FileHandler.saveStudents(students);
         System.out.println("✅ Student added successfully!");
     }
+
     public void viewStudents() {
         if (students.isEmpty()) {
             System.out.println("No students found.");
@@ -38,6 +40,7 @@ public class StudentService {
             System.out.println(s);
         }
     }
+
     public void searchStudent(Scanner sc) {
         System.out.print("Enter student ID to search: ");
         int id = sc.nextInt();
@@ -49,6 +52,7 @@ public class StudentService {
         }
         System.out.println("❌ Student not found!");
     }
+
     public void updateStudent(Scanner sc) {
         System.out.print("Enter student ID to update: ");
         int id = sc.nextInt();
@@ -72,4 +76,19 @@ public class StudentService {
         System.out.println("❌ Student not found!");
     }
 
+    public void deleteStudent(Scanner sc) {
+        System.out.print("Enter student ID to delete: ");
+        int id = sc.nextInt();
+        Iterator<Student> iterator = students.iterator();
+        while (iterator.hasNext()) {
+            Student s = iterator.next();
+            if (s.getId() == id) {
+                iterator.remove();
+                FileHandler.saveStudents(students);
+                System.out.println("🗑️ Student deleted successfully!");
+                return;
+            }
+        }
+        System.out.println("❌ Student not found!");
+    }
 }
